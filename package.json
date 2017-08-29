@@ -1,0 +1,14 @@
+{
+  "name": "smartcredit_server",
+  "version": "1.0.0",
+  "description": "iothackffm project server",
+  "main": "index.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
