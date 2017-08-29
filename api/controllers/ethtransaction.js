@@ -4,25 +4,40 @@ var config = require('../../config.js');
 var Web3 = require('web3');
 const web3 = new Web3(new Web3.providers.HttpProvider(config.ethhost));
 
-var abi = [{ "constant": false, "inputs": [], "name": "item_arrived", "outputs": [], "payable": false, "type": "function" },
-{ "constant": false, "inputs": [], "name": "item_delivered", "outputs": [], "payable": false, "type": "function" },
+var abi = [{
+  "constant": false, "inputs": [], "name": "get_balance_sme", "outputs": [{ "name": "", "type": "uint256" }],
+  "payable": false, "type": "function"
+}, {
+  "constant": false, "inputs": [], "name": "item_arrived", "outputs": [],
+  "payable": false, "type": "function"
+}, {
+  "constant": false, "inputs": [], "name": "get_cred_facility", "outputs": [{ "name": "", "type": "uint256" }],
+  "payable": false, "type": "function"
+}, {
+  "constant": false, "inputs": [], "name": "get_output_box", "outputs": [{ "name": "", "type": "uint256" }],
+  "payable": false, "type": "function"
+}, {
+  "constant": false, "inputs": [], "name": "get_input_box", "outputs": [{ "name": "", "type": "uint256" }],
+  "payable": false, "type": "function"
+}, {
+  "constant": false, "inputs": [], "name": "item_delivered", "outputs": [],
+  "payable": false, "type": "function"
+}, { "inputs": [], "payable": true, "type": "constructor" },
 {
-  "inputs": [{
-    "name": "cred", "type": "uint256", "index": 0,
-    "typeShort": "uint", "bits": "256", "displayName": "cred", "template": "elements_input_uint", "value": "2"
-  }],
-  "payable": true, "type": "constructor"
+  "anonymous": false, "inputs": [{ "indexed": false, "name": "comp_balance", "type": "uint256" },
+  { "indexed": false, "name": "cred_facility", "type": "uint256" }],
+  "name": "box_incoming", "type": "event"
 }];
 
 var transaction = function (from, to) {
-  //web3.personal.unlockAccount(config.account, config.password);
+  web3.personal.unlockAccount(config.account, config.password);
 
   var MyContract = web3.eth.contract(abi);
 
   // initiate contract for an address
-  var myContractInstance = MyContract.at('0x99a43C07dDE441D7156757c8398d3B7753014D2a');
+  var myContractInstance = MyContract.at(config.creditId);
 
-  myContractInstance.item_arrived({ gas: 478000 });
+  myContractInstance.item_arrived({ from: config.account, gas: 478000 });
 
   /*
   web3.eth.sendTransaction({
