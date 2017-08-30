@@ -32,7 +32,7 @@ var abi = [{
 
 function update_sm_data() {
 
-    var account  = config.account;
+    var account = config.account;
     var password = config.password;
     var creditId = config.creditId;
 
@@ -40,19 +40,21 @@ function update_sm_data() {
 
     var myContract = web3.eth.contract(abi);
     var myContractInstance = myContract.at(creditId);
-    
-    var i_box = myContractInstance.get_input_box();
-    var o_box = myContractInstance.get_output_box();
 
-    var b_sme =  myContractInstance.get_balance_sme();
-    var b_crd = myContractInstance.get_cred_facility();
+    myContractInstance.item_delivered({ from: account, value: 11, gas: 478000 });
+
+    var i_box = myContractInstance.get_input_box({ from: account, gas: 478000 });
+    var o_box = myContractInstance.get_output_box({ from: account, gas: 478000 });
+
+    var b_sme = myContractInstance.get_balance_sme({ from: account, gas: 478000 });
+    var b_crd = myContractInstance.get_cred_facility({ from: account, gas: 478000 });
 
     update_field("i_box", i_box);
     update_field("o_box", o_box);
     update_field("b_sme", b_sme);
     update_field("b_crd", b_crd);
- }
+}
 
- function update_field(field, val_item) {
+function update_field(field, val_item) {
     document.getElementById(field).innerHTML = val_item;
- }
+}
