@@ -32,8 +32,6 @@ var abi = [{
 
 function update_sm_data() {
 
-    reset_fields();
-
     var account = config.account;
     var password = config.password;
     var creditId = config.creditId;
@@ -56,11 +54,15 @@ function update_sm_data() {
 
 }
 
+function update_sm_data_btn() {
+    reset_fields();
+    update_sm_data();
+}
+
 function update_field(field, val_item) {
-    if (field == 'b_sme' || field == 'b_crd') {
+    if (val_item != ".loading" &&  (field == 'b_sme' || field == 'b_crd')) {
         val_item = round(val_item, 3);
         val_item = val_item + " ETH";
-        //val_item = val_item + " ETH";
     }
     document.getElementById(field).innerHTML = val_item;
 }
