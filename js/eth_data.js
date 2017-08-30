@@ -1,8 +1,7 @@
-'use strict';
 
-var config  = require('config.js');
-var Web3    = require('web3');
-var ethhost = process.env.ETHHOST || config.ethhost;
+//var config = require('/js/config.js');
+var Web3 = require('web3');
+var ethhost = config.ethhost;
 
 const web3 = new Web3(new Web3.providers.HttpProvider(ethhost));
 
@@ -33,9 +32,9 @@ var abi = [{
 
 function update_sm_data() {
 
-    var account  = process.env.ACCOUNT || config.account;
-    var password = process.env.PASSWORD || config.password;
-    var creditId = process.env.CREDITID || config.creditId;
+    var account  = config.account;
+    var password = config.password;
+    var creditId = config.creditId;
 
     web3.personal.unlockAccount(account, password);
 
