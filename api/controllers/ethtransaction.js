@@ -9,27 +9,26 @@ const web3 = new Web3(new Web3.providers.HttpProvider(ethhost));
 var abi = [{
   "constant": false, "inputs": [], "name": "get_balance_sme", "outputs": [{ "name": "", "type": "uint256" }],
   "payable": false, "type": "function"
-}, {
+},
+{
   "constant": false, "inputs": [], "name": "item_arrived", "outputs": [],
   "payable": false, "type": "function"
 }, {
-  "constant": false, "inputs": [], "name": "get_cred_facility", "outputs": [{ "name": "", "type": "uint256" }],
+  "constant": false, "inputs": [],
+  "name": "get_cred_facility", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "type": "function"
+}, {
+  "constant": false, "inputs": [],
+  "name": "get_output_box", "outputs": [{ "name": "", "type": "uint256" }],
   "payable": false, "type": "function"
 }, {
-  "constant": false, "inputs": [], "name": "get_output_box", "outputs": [{ "name": "", "type": "uint256" }],
+  "constant": false, "inputs": [],
+  "name": "get_input_box", "outputs": [{ "name": "", "type": "uint256" }],
   "payable": false, "type": "function"
 }, {
-  "constant": false, "inputs": [], "name": "get_input_box", "outputs": [{ "name": "", "type": "uint256" }],
-  "payable": false, "type": "function"
-}, {
-  "constant": false, "inputs": [], "name": "item_delivered", "outputs": [],
-  "payable": false, "type": "function"
-}, { "inputs": [], "payable": true, "type": "constructor" },
-{
-  "anonymous": false, "inputs": [{ "indexed": false, "name": "comp_balance", "type": "uint256" },
-  { "indexed": false, "name": "cred_facility", "type": "uint256" }],
-  "name": "box_incoming", "type": "event"
-}];
+  "constant": false, "inputs": [],
+  "name": "item_delivered", "outputs": [], "payable": true, "type": "function"
+},
+{ "inputs": [], "payable": true, "type": "constructor" }];
 
 var transaction = function () {
   var account = process.env.ACCOUNT || config.account;
@@ -67,4 +66,30 @@ exports.do_transaction = function (req, res) {
 exports.do_count = function (req, res) {
   transaction();
   res.json({ text: "counted" });
+};
+
+exports.do_arrived = function (req, res) {
+  var account = process.env.ACCOUNT || config.account;
+  var password = process.env.PASSWORD || config.password;
+  var creditId = process.env.CREDITID || config.creditId;
+
+  web3.personal.unlockAccount(account, password);
+
+  var MyContract = web3.eth.contract(abi);
+  var myContractInstance = MyContract.at(creditId);
+  myContractInstance.item_arrived({ from: account, gas: 478000 });
+  res.json({ text: "arrived" });
+};
+
+exports.do_delivered = function (req, res) {
+  var account = process.env.ACCOUNT || config.account;
+  var password = process.env.PASSWORD || config.password;
+  var creditId = process.env.CREDITID || config.creditId;
+
+  web3.personal.unlockAccount(account, password);
+
+  var MyContract = web3.eth.contract(abi);
+  var myContractInstance = MyContract.at(creditId);
+  myContractInstance.item_delivered({ from: account, value: 11, gas: 478000 });
+  res.json({ text: "delivered" });
 };
