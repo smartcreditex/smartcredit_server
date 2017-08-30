@@ -32,6 +32,13 @@ var abi = [{
 
 function update_sm_data() {
 
+    reset_fields();
+
+    var nu = "6.688689";
+
+    update_field("b_sme", nu);    
+
+/*
     var account = config.account;
     var password = config.password;
     var creditId = config.creditId;
@@ -51,8 +58,41 @@ function update_sm_data() {
     update_field("o_box", o_box);
     update_field("b_sme", b_sme);
     update_field("b_crd", b_crd);
+    */
 }
 
 function update_field(field, val_item) {
+    if (field == 'b_sme') {
+        val_item = round(val_item, 3);
+        val_item = val_item + " ETH";
+        //val_item = val_item + " ETH";
+    }
     document.getElementById(field).innerHTML = val_item;
 }
+
+function reset_fields() {
+    var val_item = ".loading";
+    update_field("i_box", val_item);
+    update_field("o_box", val_item);
+    update_field("b_sme", val_item);
+    update_field("b_crd", val_item);
+}
+
+function round(value, exp) {
+    if (typeof exp === 'undefined' || +exp === 0)
+      return Math.round(value);
+  
+    value = +value;
+    exp = +exp;
+  
+    if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0))
+      return NaN;
+  
+    // Shift
+    value = value.toString().split('e');
+    value = Math.round(+(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp)));
+  
+    // Shift back
+    value = value.toString().split('e');
+    return +(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp));
+  }
