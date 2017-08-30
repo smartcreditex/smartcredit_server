@@ -29,6 +29,11 @@ var abi = [{
 },
 { "inputs": [], "payable": true, "type": "constructor" }];
 
+var myContractInstance;
+var i_box;
+var o_box;
+var b_sme;
+var b_crd;
 
 function update_sm_data() {
 
@@ -39,29 +44,33 @@ function update_sm_data() {
     web3.personal.unlockAccount(account, password);
 
     var myContract = web3.eth.contract(abi);
-    var myContractInstance = myContract.at(creditId);
+    myContractInstance = myContract.at(creditId);
 
-    var i_box = myContractInstance.get_input_box.call({ from: account, gas: 478000 });
-    var o_box = myContractInstance.get_output_box.call({ from: account, gas: 478000 });
+    //update fields
+    update_sm_data_btn();
 
-    var b_sme = myContractInstance.get_balance_sme.call({ from: account, gas: 478000 });
-    var b_crd = myContractInstance.get_cred_facility.call({ from: account, gas: 478000 });
+}
+
+function update_sm_data_btn() {
+
+    reset_fields();
+
+    i_box = myContractInstance.get_input_box.call({ from: account, gas: 478000 });
+    o_box = myContractInstance.get_output_box.call({ from: account, gas: 478000 });
+
+    b_sme = myContractInstance.get_balance_sme.call({ from: account, gas: 478000 });
+    b_crd = myContractInstance.get_cred_facility.call({ from: account, gas: 478000 });
 
     update_field("i_box", i_box);
     update_field("o_box", o_box);
     update_field("b_sme", b_sme);
     update_field("b_crd", b_crd);
 
-}
-
-function update_sm_data_btn() {
-    window.location.reload(false);
-    //reset_fields();
-    //update_sm_data();
+    //window.location.reload(false);
 }
 
 function update_field(field, val_item) {
-    if (val_item != ".loading" &&  (field == 'b_sme' || field == 'b_crd')) {
+    if (val_item != "loading" && (field == 'b_sme' || field == 'b_crd')) {
         val_item = round(val_item, 3);
         val_item = val_item + " ETH";
     }
@@ -69,7 +78,7 @@ function update_field(field, val_item) {
 }
 
 function reset_fields() {
-    var val_item = ".loading";
+    var val_item = "loading";
     update_field("i_box", val_item);
     update_field("o_box", val_item);
     update_field("b_sme", val_item);
