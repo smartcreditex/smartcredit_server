@@ -3,7 +3,7 @@ services:
   smartcredit_server:
     build: ./
     ports:
-      - "1337:1337"
+      - "41337:41337"
 
   ropsten:
     image: ethereum/go-client

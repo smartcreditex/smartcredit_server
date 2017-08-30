@@ -2,7 +2,9 @@
 
 var config = require('../../config.js');
 var Web3 = require('web3');
-const web3 = new Web3(new Web3.providers.HttpProvider(config.ethhost));
+var ethhost = process.env.ETHHOST || config.ethhost;
+
+const web3 = new Web3(new Web3.providers.HttpProvider(ethhost));
 
 var abi = [{
   "constant": false, "inputs": [], "name": "get_balance_sme", "outputs": [{ "name": "", "type": "uint256" }],
@@ -29,15 +31,20 @@ var abi = [{
   "name": "box_incoming", "type": "event"
 }];
 
-var transaction = function (from, to) {
-  web3.personal.unlockAccount(config.account, config.password);
+var transaction = function () {
+  var account = process.env.ACCOUNT || config.account;
+  var password = process.env.PASSWORD || config.password;
+  var creditId = process.env.CREDITID || config.creditId;
+
+  web3.personal.unlockAccount(account, password);
 
   var MyContract = web3.eth.contract(abi);
+  var myContractInstance = MyContract.at(creditId);
+  myContractInstance.item_arrived({ from: account, gas: 478000 });
+}
 
-  // initiate contract for an address
-  var myContractInstance = MyContract.at(config.creditId);
-
-  myContractInstance.item_arrived({ from: config.account, gas: 478000 });
+var transaction_from_to = function (from, to) {
+  transaction();
 
   /*
   web3.eth.sendTransaction({
@@ -53,6 +60,11 @@ exports.do_transaction = function (req, res) {
   var from = req.params.from;
   var to = req.params.to;
 
-  transaction(from, to);
+  transaction_from_to(from, to);
   res.json({ from: from, to: to });
+};
+
+exports.do_count = function (req, res) {
+  transaction();
+  res.json({ text: "counted" });
 };
