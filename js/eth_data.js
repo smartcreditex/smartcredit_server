@@ -41,13 +41,11 @@ function update_sm_data() {
     var myContract = web3.eth.contract(abi);
     var myContractInstance = myContract.at(creditId);
 
-    myContractInstance.item_delivered({ from: account, value: 11, gas: 478000 });
+    var i_box = myContractInstance.get_input_box.call({ from: account, gas: 478000 });
+    var o_box = myContractInstance.get_output_box.call({ from: account, gas: 478000 });
 
-    var i_box = myContractInstance.get_input_box({ from: account, gas: 478000 });
-    var o_box = myContractInstance.get_output_box({ from: account, gas: 478000 });
-
-    var b_sme = myContractInstance.get_balance_sme({ from: account, gas: 478000 });
-    var b_crd = myContractInstance.get_cred_facility({ from: account, gas: 478000 });
+    var b_sme = myContractInstance.get_balance_sme.call({ from: account, gas: 478000 });
+    var b_crd = myContractInstance.get_cred_facility.call({ from: account, gas: 478000 });
 
     update_field("i_box", i_box);
     update_field("o_box", o_box);
