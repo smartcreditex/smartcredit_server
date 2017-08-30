@@ -2,6 +2,7 @@ version: '3'
 services:
   smartcredit_server:
     build: ./
+    env_file: .env
     ports:
       - "41337:41337"
 
