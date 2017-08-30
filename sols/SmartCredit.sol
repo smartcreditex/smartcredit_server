@@ -3,11 +3,11 @@ pragma solidity ^0.4.6;
 contract SmartCredit {
 
 // storage variables
-uint    input_box     = 0;
-uint    output_box    = 0;
+int    input_box     = 0;
+int    output_box    = 0;
 address bank = 0x751d5695dF8642f77b95619C36c139af366bd194; //should be address coming from the interface
 address sme  = 0x46F7Ab0D4a0854f5D6cCc1F7D3E9f9D11bd25646; //should be address coming from the interface
-uint    balance_sme   = 0;
+int    balance_sme   = 0;
 uint    cred_facility = 0;
 
 // events
@@ -45,15 +45,15 @@ function item_delivered() payable {
 }
 
 // getter functions
-function get_input_box() returns (uint) {
+function get_input_box() returns (int) {
   return input_box;
 }
 
-function get_output_box() returns (uint)  {
+function get_output_box() returns (int)  {
   return output_box;
 }
 
-function get_balance_sme() returns (uint) {
+function get_balance_sme() returns (int) {
   return balance_sme;
 }
 
