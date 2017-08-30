@@ -34,7 +34,7 @@ revert();
 
 // item leaving //send money from sme to bank
 function item_delivered() payable {
-  output_box = output_box -1;
+  output_box = output_box +1;
   //sending money from sme to thebank
   cred_facility = cred_facility + msg.value;
   if(!bank.send(11)){

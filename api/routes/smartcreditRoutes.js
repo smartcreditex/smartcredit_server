@@ -14,6 +14,9 @@ module.exports = function (app) {
     app.route('/arrived')
     .get(ethtransaction.do_arrived);
 
+    app.route('/delivered')
+    .get(ethtransaction.do_delivered);
+
     app.route('/config.js')
     .get(configcontroller.createConfig);
 
@@ -34,4 +37,5 @@ module.exports = function (app) {
   app.use('/vendor', express.static('vendor'));
   app.use('/node_modules', express.static('node_modules'));
   app.use('/', express.static('pages/index.html'));
+  app.use('/logo.png', express.static('logo.png'));
 };
