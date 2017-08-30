@@ -55,8 +55,9 @@ function update_sm_data() {
 }
 
 function update_sm_data_btn() {
-    reset_fields();
-    update_sm_data();
+    window.location.reload(false);
+    //reset_fields();
+    //update_sm_data();
 }
 
 function update_field(field, val_item) {
