@@ -5,28 +5,24 @@ var ethhost = config.ethhost;
 
 const web3 = new Web3(new Web3.providers.HttpProvider(ethhost));
 
-var abi = [{
-    "constant": false, "inputs": [], "name": "get_balance_sme", "outputs": [{ "name": "", "type": "uint256" }],
-    "payable": false, "type": "function"
-},
+var abi = [{ "constant": false, "inputs": [], "name": "get_balance_sme", "outputs": [{ "name": "", "type": "int256" }], "payable": false, "type": "function" },
+{ "constant": false, "inputs": [], "name": "item_arrived", "outputs": [], "payable": false, "type": "function" },
 {
-    "constant": false, "inputs": [], "name": "item_arrived", "outputs": [],
-    "payable": false, "type": "function"
+  "constant": false, "inputs": [], "name": "get_cred_facility", "outputs": [{ "name": "", "type": "uint256" }],
+  "payable": false, "type": "function"
 }, {
-    "constant": false, "inputs": [],
-    "name": "get_cred_facility", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "type": "function"
+  "constant": false, "inputs": [], "name": "get_output_box", "outputs": [{ "name": "", "type": "int256" }],
+  "payable": false, "type": "function"
 }, {
-    "constant": false, "inputs": [],
-    "name": "get_output_box", "outputs": [{ "name": "", "type": "uint256" }],
-    "payable": false, "type": "function"
+  "constant": false, "inputs": [], "name": "get_princ_paid", "outputs": [{ "name": "", "type": "uint256" }],
+  "payable": false, "type": "function"
 }, {
-    "constant": false, "inputs": [],
-    "name": "get_input_box", "outputs": [{ "name": "", "type": "uint256" }],
-    "payable": false, "type": "function"
+  "constant": false, "inputs": [], "name": "get_int_paid", "outputs": [{ "name": "", "type": "uint256" }],
+  "payable": false, "type": "function"
 }, {
-    "constant": false, "inputs": [],
-    "name": "item_delivered", "outputs": [], "payable": true, "type": "function"
-},
+  "constant": false, "inputs": [], "name": "get_input_box", "outputs": [{ "name": "", "type": "int256" }],
+  "payable": false, "type": "function"
+}, { "constant": false, "inputs": [], "name": "item_delivered", "outputs": [], "payable": true, "type": "function" },
 { "inputs": [], "payable": true, "type": "constructor" }];
 
 var myContractInstance;
