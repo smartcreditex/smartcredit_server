@@ -49,12 +49,6 @@ function update_sm_data() {
     //update fields
     update_sm_data_btn();
 
-}
-
-function update_sm_data_btn() {
-
-    reset_fields();
-
     i_box = myContractInstance.get_input_box.call({ from: account, gas: 478000 });
     o_box = myContractInstance.get_output_box.call({ from: account, gas: 478000 });
 
@@ -66,7 +60,14 @@ function update_sm_data_btn() {
     update_field("b_sme", web3.fromWei(b_sme, 'ether'));
     update_field("b_crd", web3.fromWei(b_crd, 'ether'));
 
-    //window.location.reload(false);
+
+}
+
+function update_sm_data_btn() {
+
+    reset_fields();
+
+    window.location.reload(false);
 }
 
 function update_field(field, val_item) {
