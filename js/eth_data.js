@@ -63,8 +63,8 @@ function update_sm_data_btn() {
 
     update_field("i_box", i_box);
     update_field("o_box", o_box);
-    update_field("b_sme", b_sme);
-    update_field("b_crd", b_crd);
+    update_field("b_sme", web3.fromWei(b_sme, 'ether'));
+    update_field("b_crd", web3.fromWei(b_crd, 'ether'));
 
     //window.location.reload(false);
 }
