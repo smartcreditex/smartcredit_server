@@ -35,11 +35,11 @@ var o_box;
 var b_sme;
 var b_crd;
 
-function update_sm_data() {
+var account = config.account;
+var password = config.password;
+var creditId = config.creditId;
 
-    var account = config.account;
-    var password = config.password;
-    var creditId = config.creditId;
+function update_sm_data() {
 
     web3.personal.unlockAccount(account, password);
 

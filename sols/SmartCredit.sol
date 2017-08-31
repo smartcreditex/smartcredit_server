@@ -37,11 +37,11 @@ function item_delivered() payable {
   output_box = output_box +1;
   //sending money from sme to thebank
   cred_facility = cred_facility + msg.value;
-  if(!bank.send(11)){
+  if(!bank.send(1)){
    revert();
   }
   //updating sme account
-  balance_sme = balance_sme - 11;
+  balance_sme = balance_sme - 1;
 }
 
 // getter functions
