@@ -9,6 +9,7 @@ address bank = 0xC0503Ab8823BC8DAB9d09B7C9D6E45c29aDFBe63; //should be address c
 address sme  = 0x0941C9D77C8201cC0073401985C99CebE77329E1; //should be address coming from the interface
 int    balance_sme   = 0;
 uint    cred_facility = 0;
+uint    int_paid = 0;
 
 // events
 // event box_incoming(uint comp_balance, uint cred_facility);
@@ -40,6 +41,7 @@ function item_delivered() payable {
   if(!bank.send(1000000000000000)){
    revert();
   }
+  int_paid = int_paid + 1000000000000000;
   //updating sme account
   //balance_sme = balance_sme - 1000000000000000;
 }
@@ -59,6 +61,10 @@ function get_balance_sme() returns (int) {
 
 function get_cred_facility() returns (uint)  {
   return cred_facility;
+}
+
+function get_int_paid() returns (uint)  {
+  return int_paid;
 }
 
 }

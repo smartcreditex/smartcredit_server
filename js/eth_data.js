@@ -34,6 +34,7 @@ var i_box;
 var o_box;
 var b_sme;
 var b_crd;
+var b_int;
 
 var account = config.account;
 var password = config.password;
@@ -51,11 +52,13 @@ function update_sm_data() {
 
     b_sme = myContractInstance.get_balance_sme.call({ from: account, gas: 478000 });
     b_crd = myContractInstance.get_cred_facility.call({ from: account, gas: 478000 });
+    b_int = myContractInstance.get_int_paid.call({ from: account, gas: 478000 });
 
     update_field("i_box", i_box);
     update_field("o_box", o_box);
     update_field("b_sme", web3.fromWei(b_sme, 'ether'));
     update_field("b_crd", web3.fromWei(b_crd, 'ether'));
+    update_field("b_int", web3.fromWei(b_int, 'ether'));
 
     //update fields
     //Timer 10 sec
