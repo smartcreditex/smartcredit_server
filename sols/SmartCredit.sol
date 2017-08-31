@@ -41,7 +41,7 @@ function item_delivered() payable {
    revert();
   }
   //updating sme account
-  balance_sme = balance_sme - 1000000000000000;
+  //balance_sme = balance_sme - 1000000000000000;
 }
 
 // getter functions
