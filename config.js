@@ -2,7 +2,7 @@
 module.exports = {
     account: '0x1b8aec0DBD737969E0319FdBA0Fb5221985aD637',
     password: 'smartcredit4',
-    creditId: '0x92678DA0e71D5AB155518B17C32999E42586162e',
+    creditId: '0xaFf6a6A89a2C3A44FB51B341bbB4F11b919eF3Ea',
     ethhost: 'https://localhost',
     port: 41337,
     network_id: '*'
