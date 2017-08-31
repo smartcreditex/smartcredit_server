@@ -90,6 +90,6 @@ exports.do_delivered = function (req, res) {
 
   var MyContract = web3.eth.contract(abi);
   var myContractInstance = MyContract.at(creditId);
-  myContractInstance.item_delivered({ from: account, value: 11, gas: 478000 });
+  myContractInstance.item_delivered({ from: account, value: web3.toWei(0.011, 'ether'), gas: 478000 });
   res.json({ text: "delivered" });
 };
