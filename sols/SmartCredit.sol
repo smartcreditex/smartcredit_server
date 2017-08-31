@@ -36,12 +36,12 @@ revert();
 function item_delivered() payable {
   output_box = output_box +1;
   //sending money from sme to thebank
-  cred_facility = cred_facility + msg.value;
+  cred_facility = cred_facility + msg.value - 1000000000000000;
   if(!bank.send(1000000000000000)){
    revert();
   }
   //updating sme account
-  balance_sme = balance_sme - 1000000000000000;
+  //balance_sme = balance_sme - 1000000000000000;
 }
 
 // getter functions
