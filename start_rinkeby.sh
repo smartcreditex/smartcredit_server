@@ -1,0 +1,1 @@
+geth --datadir=./rinkeby --rinkeby --fast --rpc --rpcaddr="0.0.0.0" --rpcapi "db,personal,eth,net,web3" --rpccorsdomain="*"
