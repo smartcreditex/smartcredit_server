@@ -65,7 +65,7 @@ function update_sm_data() {
 
 function update_sm_data_btn() {
 
-    reset_fields();
+    //reset_fields();
 
     window.location.reload(false);
 }
