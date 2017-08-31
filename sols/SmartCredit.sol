@@ -10,6 +10,7 @@ address sme  = 0x0941C9D77C8201cC0073401985C99CebE77329E1; //should be address c
 int    balance_sme   = 0;
 uint    cred_facility = 0;
 uint    int_paid = 0;
+uint    princ_paid = 0;
 
 // events
 // event box_incoming(uint comp_balance, uint cred_facility);
@@ -38,6 +39,7 @@ function item_delivered() payable {
   output_box = output_box +1;
   //sending money from sme to thebank
   cred_facility = cred_facility + msg.value - 1000000000000000;
+  princ_paid = princ_paid + msg.value;
   if(!bank.send(1000000000000000)){
    revert();
   }
@@ -65,6 +67,10 @@ function get_cred_facility() returns (uint)  {
 
 function get_int_paid() returns (uint)  {
   return int_paid;
+}
+
+function get_princ_paid() returns (uint)  {
+  return princ_paid;
 }
 
 }
