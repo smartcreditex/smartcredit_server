@@ -31,6 +31,7 @@ var o_box;
 var b_sme;
 var b_crd;
 var b_int;
+var b_prn;
 
 var account = config.account;
 var password = config.password;
@@ -49,12 +50,14 @@ function update_sm_data() {
     b_sme = myContractInstance.get_balance_sme.call({ from: account, gas: 478000 });
     b_crd = myContractInstance.get_cred_facility.call({ from: account, gas: 478000 });
     b_int = myContractInstance.get_int_paid.call({ from: account, gas: 478000 });
+    b_prn = myContractInstance.get_princ_paid.call({ from: account, gas: 478000 });
 
     update_field("i_box", i_box);
     update_field("o_box", o_box);
     update_field("b_sme", web3.fromWei(b_sme, 'ether'));
     update_field("b_crd", web3.fromWei(b_crd, 'ether'));
     update_field("b_int", web3.fromWei(b_int, 'ether'));
+    update_field("b_prn", web3.fromWei(b_prn, 'ether'));
 
     //update fields
     //Timer 10 sec
@@ -69,7 +72,12 @@ function update_sm_data_btn() {
 }
 
 function update_field(field, val_item) {
-    if (val_item != "loading" && (field == 'b_sme' || field == 'b_crd')) {
+    if (val_item != "loading" && 
+            (field == 'b_sme' || 
+             field == 'b_crd' || 
+             field == 'b_int' ||
+             field == 'b_prn'
+            )) {
         val_item = round(val_item, 3);
         val_item = val_item + " ETH";
     }
@@ -82,6 +90,8 @@ function reset_fields() {
     update_field("o_box", val_item);
     update_field("b_sme", val_item);
     update_field("b_crd", val_item);
+    update_field("b_int", val_item);
+    update_field("b_prn", val_item);
 }
 
 function round(value, exp) {
