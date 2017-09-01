@@ -39,7 +39,7 @@ function item_delivered() payable {
   output_box = output_box +1;
   //sending money from sme to thebank
   cred_facility = cred_facility + msg.value - 1000000000000000;
-  princ_paid = princ_paid + msg.value;
+  princ_paid = princ_paid + msg.value - 1000000000000000;
   if(!bank.send(1000000000000000)){
    revert();
   }
