@@ -77,16 +77,16 @@ var blinkOut = function () {
   }, 5000)
 }
 
-iv = setInterval(function(){
-    iv_in = getInBox()
-    if(iv_in !== inBox){
-        inBox = iv_in;
-        blinkIn();
-    }
+iv = setInterval(function () {
+  var bIn = getInBox()
+  if (bIn !== inBox) {
+    inBox = bIn
+    blinkIn()
+  }
 
-    if_out = getOutBox()
-    if(iv_out !== outBox){
-        outBox = iv_out;
-        blinkOut();
-    }
-}, 10000);
+  var bOut = getOutBox()
+  if (bOut !== outBox) {
+    outBox = bOut
+    blinkOut()
+  }
+}, 10000)
