@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.4",
+    "inout": "^1.0.3",
     "web3": "^0.20.0"
   }
 }
