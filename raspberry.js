@@ -44,12 +44,12 @@ var ledIn = new Gpio(3, 'out')
 var ledOut = new Gpio(2, 'out')
 
 var getInBox = function () {
-  i_box = myContractInstance.get_input_box.call({ from: account, gas: 478000 })
+  var i_box = myContractInstance.get_input_box.call({ from: account, gas: 478000 })
   return i_box
 }
 
 var getOutBox = function () {
-  o_box = myContractInstance.get_output_box.call({ from: account, gas: 478000 })
+  var o_box = myContractInstance.get_output_box.call({ from: account, gas: 478000 })
   return o_box
 }
 
