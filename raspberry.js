@@ -45,12 +45,12 @@ var ledOut = new Gpio(2, 'out')
 
 var getInBox = function () {
   var i_box = myContractInstance.get_input_box.call({ from: account, gas: 478000 })
-  return i_box
+  return parseInt(i_box)
 }
 
 var getOutBox = function () {
   var o_box = myContractInstance.get_output_box.call({ from: account, gas: 478000 })
-  return o_box
+  return parseInt(o_box)
 }
 
 var iv
@@ -79,13 +79,13 @@ var blinkOut = function () {
 
 iv = setInterval(function () {
   var bIn = getInBox()
-  if (bIn !== inBox) {
+  if (bIn != inBox) {
     inBox = bIn
     blinkIn()
   }
 
   var bOut = getOutBox()
-  if (bOut !== outBox) {
+  if (bOut != outBox) {
     outBox = bOut
     blinkOut()
   }
