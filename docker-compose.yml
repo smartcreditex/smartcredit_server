@@ -8,7 +8,7 @@ services:
 
   rinkeby:
     image: ethereum/client-go
-    command: '--datadir=/root/data --rinkeby --fast --rpc --rpcaddr="0.0.0.0" --rpcapi "db,personal,eth,net,web3" --rpccorsdomain="*"'
+    command: '--datadir=/root/data --rinkeby --fast --rpc --rpcaddr="0.0.0.0" --rpcapi "db,personal,eth,net,web3" --rpccorsdomain="*" --rpcvhosts=*'
     volumes:
       - ./datadir/:/root/data:rw
     ports:
